@@ -1,6 +1,6 @@
 <script lang="ts">
     import { isEmail, isValidName } from "$lib/utils/validations";
-    import { SvelteToast } from '@zerodevx/svelte-toast'
+    import { SvelteToast, toast } from '@zerodevx/svelte-toast'
 
     let email = "", fullname = '', password = '', confirmPassword = ''
 
@@ -9,7 +9,14 @@
 
         //validate
         if(isEmail(email)) {
-
+            toast.push("Invalid email address", {
+                theme: {
+                    '--toastBackground': '#ff0000',
+                    '--toastProgressBackground': '#ff0000',
+                    '--toastProgressAfterBackground': '#ff0000',
+                    '--toastColor': '#fff',
+                },
+            })
         }else if(isValidName(fullname)){
 
         }else if(isValidName(password)){
