@@ -3,7 +3,7 @@ export const isEmail = (email: string) => {
 }
 
 export const isValidName = (name: string) => {
-    const nameRegex = /^[a-zA-Z0-9]+([_-]?[a-zA-Z0-9]+)*$/;
+    const nameRegex = /^[a-zA-Z0-9]+([ _-]?[a-zA-Z0-9]+)*$/
     return name.length >= 2 && name.length <= 50 && nameRegex.test(name);
 }
 

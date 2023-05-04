@@ -1,20 +1,25 @@
 <script lang="ts">
-    import { isEmail, isValidName } from "$lib/utils/validations";
+    import { toast, ToastContainer } from "svelte-toastify";
+    import { isEmail, isValidName, isPassword } from "$lib/utils/validations";
+
+    toast.configure({
+        position: "top-right"
+    });
 
     let email = "", fullname = '', password = '', confirmPassword = ''
 
     const handleSignUp = (e: Event) => {
         e.preventDefault()
-
         //validate
-        if(isEmail(email)) {
-
-        }else if(isValidName(fullname)){
-
-        }else if(isValidName(password)){
-
+        if(!isEmail(email)) {
+            toast.error("Invalid email address")
+            
+        }else if(!isValidName(fullname)){
+            toast.error("Invalid name")
+        }else if(!isPassword(password)){
+            toast.error("Invalid password")
         }else if(password !== confirmPassword){
-
+            toast.error("Password do not match")
         }else{
 
         }
@@ -24,24 +29,43 @@
 
 </script>
 
-<main class="p-24 flex items-center justify-center bg-blue-600 h-screen">
-    <div class="form">
-        <form on:submit={(e)=>handleSignUp(e)} class="p-4 min-w-[30rem] border border-white rounded-xl" action="" method="post">
-            <header>
-                <h2 class="text-xl font-semibold text-white text-center"> Create account now</h2>
-            </header>
-            <div class="fields mt-12">
-                <input bind:value={fullname} type="text" placeholder="Full name" class="bg-transparent border-2 text-white placeholder:text-white placeholder:text-opacity-50 border-white border-opacity-50 p-2 block w-full rounded-xl outline-none mt-3">
-                <input bind:value={email} type="email" placeholder="Email" class="bg-transparent border-2 text-white placeholder:text-white placeholder:text-opacity-50 border-white border-opacity-50 p-2 block w-full rounded-xl outline-none mt-3">
-                <input bind:value={password} type="password" placeholder="Password" class="bg-transparent border-2 text-white placeholder:text-white placeholder:text-opacity-50 border-white border-opacity-50 p-2 block w-full rounded-xl outline-none mt-3">
-                <input bind:value={confirmPassword} type="password" placeholder="Comfirm password" class="bg-transparent border-2 text-white placeholder:text-white placeholder:text-opacity-50 border-white border-opacity-50 p-2 block w-full rounded-xl outline-none mt-3">
+<svelte:head>
+    <title>Create account</title>
+</svelte:head>
 
-                <button type="submit" class="bg-white p-2  text-blue-600 font-medium w-full mt-8 rounded-xl">Create account</button>
-
-                <div class="mt-3 text-white text-center">
-                    <p>Have an account? <a href="/login" class="underline font-medium">Login here</a></p>
-                </div>
+<main class="h-screen flex items-center justify-center">
+    <div class="max-w-md w-full">
+        <header>
+            <h2 class="text-center text-2xl font-semibold">Create a new account</h2>
+        </header>
+        <form on:submit={(e)=>handleSignUp(e)} class="w-full mx-auto bg-white p-8 rounded-md shadow-md">
+            <div class="mb-4 m-f">
+              <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Name</label>
+              <input bind:value={fullname} class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-600"
+                type="text" id="name" name="name" placeholder="John Doe">
             </div>
-        </form>
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Email</label>
+              <input bind:value={email} class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-600"
+                type="email" id="email" name="email" placeholder="john@example.com">
+            </div>
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-bold mb-2" for="password">Password</label>
+              <input bind:value={password} class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-600"
+                type="password" id="password" name="password" placeholder="********">
+            </div>
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-bold mb-2" for="confirm-password">Confirm Password</label>
+              <input bind:value={confirmPassword} class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-600"
+                type="password" id="confirm-password" name="confirm-password" placeholder="********">
+            </div>
+            <button
+              class="w-full bg-blue-600 text-white text-sm font-bold py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300"
+              type="submit">Create account</button>
+          </form>
+          <div class="text-center">
+            <p>Already have account <a href="/login" class="text-blue-600 hover:underline">login here</a></p>
+          </div>
     </div>
 </main>
+<ToastContainer />
