@@ -30,6 +30,7 @@
 		"@svelteuidev/core": "^0.11.1",
 		"@svelteuidev/motion": "^0.11.1",
 		"ant-design-svelte": "^0.0.1-alpha.11",
+		"svelte-icons-pack": "^2.1.0",
 		"svelte-toastify": "^0.0.27"
 	}
 }
