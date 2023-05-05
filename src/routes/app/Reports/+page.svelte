@@ -46,11 +46,11 @@
 </script>
 
 <svelte:head>
-    <title>Reportify - Home</title>
+    <title>Reportify - Reports</title>
 </svelte:head>
 <main class="p-3">
     <header>
-        <h2 class="text-xl font-semibold text-gray-700">Home</h2>
+        <h2 class="text-xl font-semibold text-gray-700">Create Reports</h2>
     </header>
     <div class="mt-5">
         <div class="flex items-center justify-between">
