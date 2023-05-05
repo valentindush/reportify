@@ -43,6 +43,15 @@
         },
 
     ] 
+
+    /**
+     * Title
+     * Logo
+     * 
+     *CourseCategoryies[belongsTo blueprintCat]
+      Course -->belongsTo[courseCategory] contains [CAT EX TOT]
+
+    */
 </script>
 
 <svelte:head>
